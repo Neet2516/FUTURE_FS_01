@@ -111,14 +111,14 @@
   display: block;
 }
 
-/* ── Animated Handwriting Text in Proper Deep Red ─────────── */
+/* ── Animated Typography in Times New Roman ─────────────────── */
 .boot-handwriting-text {
-  font-family: var(--font-cursive, 'Caveat', 'Dancing Script', cursive);
-  font-size: 148px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 130px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   stroke: #dc2626;
-  stroke-width: 2.4px;
+  stroke-width: 2.2px;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: #dc2626;
@@ -192,8 +192,8 @@
   }
 
   .boot-handwriting-text {
-    font-size: 135px;
-    stroke-width: 2.8px;
+    font-size: 110px;
+    stroke-width: 2.2px;
   }
 
   .boot-skip-btn {
