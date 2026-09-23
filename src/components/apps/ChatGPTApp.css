@@ -780,5 +780,15 @@
     height: 100%;
     left: 0;
     top: 0;
+    max-width: 80vw;
+  }
+
+  .chatgpt-message-row {
+    padding: 12px 14px;
+    gap: 8px;
+  }
+
+  .chatgpt-input-container {
+    padding: 0 10px 10px;
   }
 }

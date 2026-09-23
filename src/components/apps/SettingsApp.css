@@ -564,3 +564,36 @@
 .settings-app__link-btn--primary:hover {
   background: #f06432;
 }
+
+@media (max-width: 640px) {
+  .settings-app {
+    flex-direction: column;
+  }
+  .settings-app__sidebar {
+    width: 100%;
+    padding: 10px 12px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    gap: 8px;
+  }
+  .settings-app__profile {
+    display: none;
+  }
+  .settings-app__nav {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 6px;
+  }
+  .settings-app__nav-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .settings-app__content {
+    padding: 16px 14px;
+  }
+  .settings-app__wallpapers,
+  .settings-app__themes-grid {
+    grid-template-columns: 1fr;
+  }
+}

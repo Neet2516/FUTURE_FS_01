@@ -612,3 +612,35 @@
   font-size: 32px;
   opacity: 0.5;
 }
+
+@media (max-width: 640px) {
+  .nautilus-app__sidebar {
+    width: 44px;
+    padding: 8px 4px;
+  }
+  .nautilus-app__sidebar-item {
+    padding: 8px 6px;
+    justify-content: center;
+    font-size: 0;
+  }
+  .nautilus-app__sidebar-item span {
+    font-size: 16px;
+    margin: 0;
+  }
+  .nautilus-app__search {
+    display: none;
+  }
+  .nautilus-app__grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    grid-gap: 10px;
+  }
+  .nautilus-detail-card,
+  .nautilus-photo-modal,
+  .nautilus-text-modal {
+    margin: 12px;
+    padding: 16px;
+  }
+  .nautilus-photo-preview-wrap {
+    height: 240px;
+  }
+}

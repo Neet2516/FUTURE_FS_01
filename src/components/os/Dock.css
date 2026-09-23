@@ -234,3 +234,23 @@
     border-radius: 3px 3px 0 0;
   }
 }
+
+@media (max-width: 480px) {
+  .ubuntu-dock {
+    height: 48px;
+    padding: 0 4px;
+  }
+  .ubuntu-dock__item,
+  .ubuntu-dock__launcher-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+  .ubuntu-dock__icon {
+    font-size: 16px;
+  }
+  .ubuntu-dock__icon--chatgpt svg {
+    width: 18px;
+    height: 18px;
+  }
+}

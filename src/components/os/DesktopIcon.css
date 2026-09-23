@@ -87,3 +87,14 @@
   justify-content: center;
   font-size: 24px;
 }
+
+@media (max-width: 768px) {
+  .desktop-icon {
+    width: 70px;
+    padding: 6px 2px;
+    gap: 3px;
+  }
+  .desktop-icon__label {
+    font-size: 10.5px;
+  }
+}

@@ -235,3 +235,23 @@
 .projects-app__btn--secondary:hover {
   background: rgba(255, 255, 255, 0.14);
 }
+
+@media (max-width: 640px) {
+  .projects-app {
+    padding: 14px;
+    gap: 14px;
+  }
+  .projects-app__grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .projects-app__card {
+    padding: 14px;
+  }
+  .projects-app__title {
+    font-size: 18px;
+  }
+  .projects-app__actions {
+    flex-wrap: wrap;
+  }
+}

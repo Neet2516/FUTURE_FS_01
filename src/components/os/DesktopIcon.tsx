@@ -20,7 +20,14 @@ function loadPosition(id: string, fallbackX: number, fallbackY: number) {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const all = JSON.parse(raw) as Record<string, { x: number; y: number }>;
-      if (all[id]) return all[id];
+      if (all[id]) {
+        const maxX = typeof window !== 'undefined' ? Math.max(16, window.innerWidth - 85) : 1200;
+        const maxY = typeof window !== 'undefined' ? Math.max(16, window.innerHeight - 150) : 1000;
+        return {
+          x: Math.min(all[id].x, maxX),
+          y: Math.min(all[id].y, maxY),
+        };
+      }
     }
   } catch { /* ignore */ }
   return { x: fallbackX, y: fallbackY };
@@ -124,6 +131,9 @@ export default function DesktopIcon({
     e.stopPropagation();
     if (!dragRef.current.moved) {
       setIsSelected(true);
+      if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+        onOpen();
+      }
     }
   };
 

@@ -123,7 +123,21 @@
     bottom: 52px !important;
     width: 100vw !important;
     height: calc(100vh - 84px) !important;
-    border-radius: 0;
-    border: none;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+
+  .window-frame__titlebar {
+    height: 40px;
+    padding: 0 10px;
+  }
+
+  .window-frame__traffic-lights {
+    gap: 9px;
+  }
+
+  .window-frame__dot {
+    width: 14px;
+    height: 14px;
   }
 }

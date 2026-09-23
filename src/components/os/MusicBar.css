@@ -182,3 +182,27 @@
     display: none;
   }
 }
+
+@media (max-width: 480px) {
+  .os-musicbar {
+    bottom: 54px;
+    padding: 5px 8px;
+    gap: 8px;
+  }
+  .os-musicbar__track {
+    min-width: 80px;
+    max-width: 110px;
+    gap: 6px;
+  }
+  .os-musicbar__thumb {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+  .os-musicbar__title {
+    font-size: 11px;
+  }
+  .os-musicbar__artist {
+    font-size: 9.5px;
+  }
+}
