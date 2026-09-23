@@ -1,0 +1,170 @@
+/* ── Skills Section ────────────────────────────────────────── */
+.skills {
+  background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+.skills__bg-accent {
+  position: absolute;
+  top: 50%;
+  right: -200px;
+  transform: translateY(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(124,58,237,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.skills__heading {
+  font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+  margin-top: var(--sp-3);
+}
+
+/* Tabs */
+.skills__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-10);
+}
+
+.skills__tab {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-5);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--dur-base) var(--ease-out);
+  font-family: var(--font-body);
+}
+
+.skills__tab:hover {
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+  background: var(--bg-card);
+}
+
+.skills__tab--active {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  box-shadow: 0 0 16px var(--cyan-dim);
+}
+
+.skills__tab-icon {
+  font-size: 0.9rem;
+}
+
+/* Skills Grid */
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-16);
+  min-height: 200px;
+}
+
+/* Skill Card */
+.skill-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-4) var(--sp-5);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  cursor: default;
+  transition: all var(--dur-base) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--skill-color, var(--cyan));
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+
+.skill-card:hover {
+  border-color: var(--skill-color, var(--cyan));
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4),
+              0 0 0 1px color-mix(in srgb, var(--skill-color, var(--cyan)) 30%, transparent);
+}
+
+.skill-card:hover::before { opacity: 0.07; }
+
+.skill-card__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--skill-color, var(--cyan));
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 8px var(--skill-color, var(--cyan));
+}
+
+.skill-card__name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 1;
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.skill-card:hover .skill-card__name { color: var(--text-primary); }
+
+/* Marquee */
+.skills__marquee {
+  overflow: hidden;
+  position: relative;
+  padding: var(--sp-4) 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 15%, black 85%, transparent);
+}
+
+.skills__marquee-track {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.skills__marquee-item {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-dim);
+  padding: 0 var(--sp-6);
+  white-space: nowrap;
+  transition: color var(--dur-base) var(--ease-out);
+}
+
+.skills__marquee-item:hover { color: var(--cyan); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skills__grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: var(--sp-2);
+  }
+  .skills__tabs { gap: var(--sp-2); }
+}
+
+@media (max-width: 480px) {
+  .skills__grid { grid-template-columns: 1fr 1fr; }
+  .skills__tab  { padding: var(--sp-2) var(--sp-3); font-size: var(--text-xs); }
+}

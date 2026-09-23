@@ -1,0 +1,237 @@
+.projects-app {
+  padding: 24px;
+  height: 100%;
+  overflow-y: auto;
+  background: var(--theme-bg, #1a1b26);
+  color: var(--theme-foreground, #e5e7eb);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.projects-app__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 16px;
+}
+
+.projects-app__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.projects-app__subtitle {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.projects-app__filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.projects-app__filter-btn {
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.projects-app__filter-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.projects-app__filter-btn.active {
+  background: var(--cyan, #0284c7);
+  border-color: var(--cyan, #0284c7);
+  color: #fff;
+  font-weight: 600;
+}
+
+.projects-app__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.projects-app__card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.projects-app__card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-accent, rgba(0, 212, 255, 0.25));
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.projects-app__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.projects-app__badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+}
+
+.projects-app__badge--deployed {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.projects-app__index {
+  font-family: monospace;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.projects-app__name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.projects-app__tagline {
+  margin: -6px 0 0 0;
+  font-size: 12px;
+  color: var(--cyan, #38bdf8);
+  font-weight: 500;
+}
+
+.projects-app__desc {
+  margin: 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.5;
+}
+
+.projects-app__problem-box {
+  background: rgba(0, 0, 0, 0.25);
+  border-left: 3px solid var(--cyan, #38bdf8);
+  padding: 8px 12px;
+  border-radius: 0 6px 6px 0;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.projects-app__problem-label {
+  color: var(--cyan, #38bdf8);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.projects-app__problem-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.projects-app__highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.projects-app__highlight-item {
+  display: flex;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.projects-app__bullet {
+  color: var(--cyan, #38bdf8);
+}
+
+.projects-app__tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.projects-app__tech-pill {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.8);
+  font-family: monospace;
+}
+
+.projects-app__actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.projects-app__btn {
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+}
+
+.projects-app__btn--primary {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.projects-app__btn--primary:hover {
+  background: #f1f5f9;
+  border-color: #ffffff;
+}
+
+[data-theme-category="light"] .projects-app__btn--primary {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+
+[data-theme-category="light"] .projects-app__btn--primary:hover {
+  background: #1e293b;
+  border-color: #1e293b;
+}
+
+.projects-app__btn--secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.projects-app__btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.14);
+}

@@ -1,0 +1,446 @@
+/* ============================================================
+   VS Code QuickPick Theme Selector Styles
+   Authentic Visual Studio Code Color Theme Menu Aesthetics
+   ============================================================ */
+
+/* ── Overlay / Backdrop ─────────────────────────────────────── */
+.vscode-quickpick-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: clamp(24px, 6vh, 60px);
+  animation: qpFadeIn 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes qpFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes qpSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── QuickPick Main Container ───────────────────────────────── */
+.vscode-quickpick {
+  width: 580px;
+  max-width: calc(100vw - 28px);
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--border-soft);
+  overflow: hidden;
+  animation: qpSlideDown 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--font-body);
+}
+
+/* ── Header & Filter Input ──────────────────────────────────── */
+.vscode-quickpick__header {
+  padding: 8px 10px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.vscode-quickpick__input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px 4px 10px;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+
+.vscode-quickpick__input-wrapper:focus-within {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 1px var(--cyan);
+}
+
+.vscode-quickpick__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cyan);
+  opacity: 0.85;
+}
+
+.vscode-quickpick__input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-primary);
+  padding: 3px 0;
+}
+
+.vscode-quickpick__input::placeholder {
+  color: var(--text-muted);
+  font-size: 12.5px;
+}
+
+.vscode-quickpick__close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.vscode-quickpick__close-btn kbd {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  transition: all var(--dur-fast);
+}
+
+.vscode-quickpick__close-btn:hover kbd {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+/* ── Theme Items List ───────────────────────────────────────── */
+.vscode-quickpick__list {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 0;
+  max-height: 420px;
+}
+
+.vscode-quickpick__list::-webkit-scrollbar {
+  width: 8px;
+}
+.vscode-quickpick__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.vscode-quickpick__list::-webkit-scrollbar-thumb {
+  background: var(--text-dim);
+  border-radius: 4px;
+}
+
+/* Group Header */
+.vscode-quickpick__group {
+  margin-bottom: 4px;
+}
+
+.vscode-quickpick__group-header {
+  padding: 8px 14px 4px;
+  display: flex;
+  align-items: center;
+}
+
+.vscode-quickpick__group-header span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.vscode-quickpick__group-header span::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-subtle);
+}
+
+/* Theme Item Row */
+.vscode-quickpick__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  transition: background-color 60ms ease, color 60ms ease;
+  min-height: 36px;
+}
+
+.vscode-quickpick__item:hover,
+.vscode-quickpick__item--focused {
+  background-color: var(--cyan-dim);
+  color: var(--text-primary);
+}
+
+.vscode-quickpick__item--focused {
+  box-shadow: inset 3px 0 0 var(--cyan);
+}
+
+/* Checkmark indicator */
+.vscode-quickpick__check {
+  width: 14px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Palette Swatch (4 dots preview) */
+.vscode-quickpick__swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 4px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.vscode-quickpick__swatch span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: block;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+/* Label & Description */
+.vscode-quickpick__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.vscode-quickpick__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vscode-quickpick__item--focused .vscode-quickpick__label {
+  color: #ffffff;
+}
+
+[data-theme-category="light"] .vscode-quickpick__item--focused .vscode-quickpick__label {
+  color: var(--text-primary);
+}
+
+.vscode-quickpick__desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Meta & Badges */
+.vscode-quickpick__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.vscode-quickpick__badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.vscode-quickpick__badge--active {
+  background: var(--green-dim);
+  color: var(--green);
+  border: 1px solid var(--green);
+}
+
+.vscode-quickpick__badge--preview {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid var(--cyan);
+}
+
+.vscode-quickpick__tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  padding: 1px 6px;
+  border-radius: 3px;
+  text-transform: lowercase;
+}
+
+/* Empty State */
+.vscode-quickpick__empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-family: var(--font-mono);
+}
+
+/* ── Footer ─────────────────────────────────────────────────── */
+.vscode-quickpick__footer {
+  padding: 6px 14px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.vscode-quickpick__footer-hints {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vscode-quickpick__footer-hints kbd {
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  color: var(--text-secondary);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.vscode-quickpick__footer-dot {
+  opacity: 0.4;
+}
+
+.vscode-quickpick__footer-count {
+  font-size: 10.5px;
+  opacity: 0.8;
+}
+
+/* ── VS Code Notification Toast ─────────────────────────────── */
+.vscode-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-xl), 0 0 16px var(--cyan-dim);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  z-index: 10002;
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  animation: toastSlideUp 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: calc(100vw - 32px);
+}
+
+@keyframes toastSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.vscode-toast__icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.vscode-toast__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.vscode-toast__title {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+.vscode-toast__message {
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.vscode-toast__close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color var(--dur-fast);
+}
+
+.vscode-toast__close:hover {
+  color: var(--text-primary);
+}
+
+/* ── Mobile Responsiveness ──────────────────────────────────── */
+@media (max-width: 640px) {
+  .vscode-quickpick-overlay {
+    padding-top: 12px;
+  }
+  .vscode-quickpick {
+    max-height: 90vh;
+  }
+  .vscode-quickpick__desc {
+    display: none;
+  }
+  .vscode-quickpick__footer-hints {
+    font-size: 10px;
+  }
+  .vscode-toast {
+    bottom: 16px;
+    right: 16px;
+    left: 16px;
+  }
+}

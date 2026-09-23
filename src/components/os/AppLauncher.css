@@ -1,0 +1,226 @@
+.os-launcher-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99990;
+  background: rgba(10, 10, 15, 0.75);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  animation: fadeInLauncher 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInLauncher {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(28px);
+  }
+}
+
+.os-launcher {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 20px;
+}
+
+.os-launcher__search-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 28px;
+  padding: 10px 20px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+}
+
+.os-launcher__search-box:focus-within {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #e95420;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(233, 84, 32, 0.3);
+}
+
+.os-launcher__search-icon {
+  font-size: 18px;
+  opacity: 0.7;
+}
+
+.os-launcher__search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 16px;
+}
+
+.os-launcher__search-input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.os-launcher__clear-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.os-launcher__clear-btn:hover {
+  color: #fff;
+}
+
+.os-launcher__results {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.os-launcher__section-title {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.os-launcher__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 16px;
+}
+
+.os-launcher__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.os-launcher__item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.os-launcher__icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.os-launcher__icon {
+  font-size: 26px;
+}
+
+.os-launcher__name {
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Project Matches */
+.os-launcher__project-matches {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.os-launcher__project-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.os-launcher__project-row:hover {
+  background: rgba(233, 84, 32, 0.15);
+  border-color: #e95420;
+}
+
+.os-launcher__project-icon {
+  font-size: 20px;
+}
+
+.os-launcher__project-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.os-launcher__project-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.os-launcher__project-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.os-launcher__project-action {
+  font-size: 12px;
+  color: #e95420;
+  font-weight: 600;
+}
+
+.os-launcher__quick-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+
+.os-launcher__links-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.os-launcher__quick-link {
+  font-size: 12px;
+  color: #e95420;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.os-launcher__quick-link:hover {
+  text-decoration: underline;
+}

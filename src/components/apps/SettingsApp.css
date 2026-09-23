@@ -1,0 +1,566 @@
+.settings-app {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background: var(--theme-bg, #1e1e1e);
+  color: var(--theme-foreground, #e5e7eb);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Sidebar */
+.settings-app__sidebar {
+  width: 220px;
+  background: rgba(0, 0, 0, 0.22);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.settings-app__profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.settings-app__avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e95420;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.settings-app__profile-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.settings-app__user {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.settings-app__role {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.settings-app__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settings-app__nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+
+.settings-app__nav-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.settings-app__nav-btn--active {
+  background: #e95420 !important;
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.settings-app__nav-icon {
+  font-size: 16px;
+}
+
+/* Content Area */
+.settings-app__content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 28px;
+}
+
+.settings-app__section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 680px;
+}
+
+.settings-app__title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  color: #fff;
+}
+
+.settings-app__subtitle {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: -16px 0 0 0;
+}
+
+.settings-app__group {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.settings-app__group-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.settings-app__group-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.settings-app__group-desc {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Wallpapers */
+.settings-app__wallpapers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.settings-app__wallpaper-card {
+  border-radius: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+}
+
+.settings-app__wallpaper-card:hover {
+  border-color: rgba(233, 84, 32, 0.6);
+  transform: translateY(-2px);
+}
+
+.settings-app__wallpaper-card--active {
+  border-color: #e95420;
+  box-shadow: 0 0 12px rgba(233, 84, 32, 0.35);
+}
+
+.settings-app__wallpaper-preview {
+  position: relative;
+  height: 100px;
+  background: #000;
+}
+
+.settings-app__wallpaper-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.settings-app__wallpaper-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #e95420;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.settings-app__wallpaper-meta {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.settings-app__wallpaper-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.settings-app__wallpaper-desc {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.3;
+}
+
+/* Theme Filter & Grid */
+.settings-app__theme-filter {
+  display: flex;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.settings-app__filter-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.settings-app__filter-btn.active {
+  background: #e95420;
+  color: #fff;
+}
+
+.settings-app__themes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.settings-app__theme-card {
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.15s ease;
+}
+
+.settings-app__theme-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.settings-app__theme-card--active {
+  border-color: #e95420;
+  background: rgba(233, 84, 32, 0.12);
+}
+
+.settings-app__theme-swatches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.settings-app__swatch {
+  width: 100%;
+  height: 100%;
+}
+
+.settings-app__theme-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.settings-app__theme-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settings-app__theme-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.settings-app__theme-check {
+  font-size: 11px;
+  color: #e95420;
+  font-weight: 700;
+}
+
+.settings-app__theme-desc {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Toggle */
+.settings-app__toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.settings-app__toggle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.settings-app__toggle-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.settings-app__toggle-desc {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.settings-app__switch {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.settings-app__switch--on {
+  background: #e95420;
+}
+
+.settings-app__switch-handle {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: transform 0.2s ease;
+}
+
+.settings-app__switch--on .settings-app__switch-handle {
+  transform: translateX(20px);
+}
+
+/* Audio Tab */
+.settings-app__volume-box {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+
+.settings-app__vol-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.settings-app__mute-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.settings-app__vol-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  cursor: pointer;
+}
+
+.settings-app__vol-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #e95420;
+  cursor: pointer;
+}
+
+.settings-app__vol-percent {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-variant-numeric: tabular-nums;
+  min-width: 36px;
+  text-align: right;
+}
+
+.settings-app__audio-track-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 12px 14px;
+  border-radius: 8px;
+}
+
+.settings-app__audio-icon {
+  font-size: 26px;
+}
+
+.settings-app__audio-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.settings-app__audio-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.settings-app__audio-artist {
+  font-size: 12px;
+  color: #e95420;
+}
+
+.settings-app__audio-path {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: monospace;
+}
+
+/* About Tab */
+.settings-app__about-badge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+.settings-app__about-head h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.settings-app__about-edition {
+  font-size: 13px;
+  color: #e95420;
+  font-weight: 500;
+}
+
+.settings-app__specs-table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.settings-app__spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13px;
+}
+
+.settings-app__spec-row:last-child {
+  border-bottom: none;
+}
+
+.settings-app__spec-key {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.settings-app__spec-val {
+  color: #fff;
+  font-weight: 500;
+  text-align: right;
+}
+
+.settings-app__links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.settings-app__link-btn {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.settings-app__link-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.settings-app__link-btn--primary {
+  background: #e95420;
+  border-color: #e95420;
+}
+
+.settings-app__link-btn--primary:hover {
+  background: #f06432;
+}

@@ -1,0 +1,137 @@
+/* ── App Layout & Global Controls ────────────────────────────── */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--bg-primary);
+}
+
+/* ── Skip to Main Content (Accessibility) ───────────────────── */
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: var(--sp-4);
+  background: var(--cyan);
+  color: var(--bg-primary);
+  padding: var(--sp-2) var(--sp-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  z-index: 10000;
+  transition: top var(--dur-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: var(--sp-4);
+}
+
+/* ── Scroll Progress Bar ─────────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.scroll-progress__bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyan), var(--violet), var(--green));
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.7);
+  transition: width 0.1s linear;
+}
+
+/* ── Floating Terminal FAB Button ────────────────────────────── */
+.floating-term-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(0, 212, 255, 0.2);
+  cursor: pointer;
+  z-index: 900;
+  transition: all var(--dur-base) var(--ease-out);
+  backdrop-filter: blur(12px);
+}
+
+.floating-term-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  border-color: var(--cyan);
+  box-shadow: var(--shadow-xl), 0 0 30px rgba(0, 212, 255, 0.4);
+  color: #fff;
+  background: var(--bg-card-hover);
+}
+
+.floating-term-icon {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.floating-term-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 9px;
+  height: 9px;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--green);
+}
+
+/* ── Keyboard shortcut hint badge ───────────────────────────── */
+.key-hint {
+  position: fixed;
+  bottom: 28px;
+  right: 88px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 900;
+  opacity: 0.85;
+  transition: opacity var(--dur-fast);
+}
+
+.key-hint kbd {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: var(--cyan);
+  font-size: 10px;
+}
+
+@media (max-width: 768px) {
+  .key-hint {
+    display: none;
+  }
+  .floating-term-btn {
+    bottom: 16px;
+    right: 16px;
+    width: 46px;
+    height: 46px;
+  }
+}

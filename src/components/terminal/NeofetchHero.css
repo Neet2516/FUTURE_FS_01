@@ -1,0 +1,240 @@
+/* ============================================================
+   Neofetch Hero 3-Column Layout Styles
+   Matching Developer Reference Design
+   ============================================================ */
+
+.nf-hero {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 36px;
+  padding: 8px 12px 18px 12px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-mono, monospace);
+  animation: nfFadeIn 300ms ease-out;
+}
+
+@keyframes nfFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Left Column: Cyber Portrait ───────────────────────────── */
+.nf-hero__left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Middle Column: Neofetch System Information ────────────── */
+.nf-hero__middle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 270px;
+  flex: 1;
+  gap: 10px;
+}
+
+.nf-hero__user-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.nf-hero__username {
+  color: #4ade80;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 10px rgba(74, 222, 128, 0.4);
+}
+
+.nf-hero__separator {
+  color: #64748b;
+  font-size: 12px;
+  letter-spacing: 1px;
+  user-select: none;
+}
+
+.nf-hero__meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+}
+
+.nf-hero__meta-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.nf-hero__meta-key {
+  color: #38bdf8;
+  font-weight: 600;
+  min-width: 82px;
+  letter-spacing: 0.3px;
+  text-shadow: 0 0 6px rgba(56, 189, 248, 0.35);
+  user-select: none;
+}
+
+.nf-hero__meta-val {
+  color: #f1f5f9;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* Terminal Palette Color Blocks */
+.nf-hero__palette {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+  user-select: none;
+}
+
+.nf-hero__palette-block {
+  width: 17px;
+  height: 11px;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  transition: transform 120ms ease;
+}
+
+.nf-hero__palette-block:hover {
+  transform: scale(1.25);
+}
+
+/* ── Right Column: Philosophy, Developer Roles & Socials ───── */
+.nf-hero__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 230px;
+  max-width: 280px;
+  gap: 16px;
+  padding-left: 32px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nf-hero__quote-box {
+  position: relative;
+}
+
+.nf-hero__quote {
+  color: #cbd5e1;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0.2px;
+  opacity: 0.95;
+}
+
+.nf-hero__roles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nf-hero__role-item {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 1.4px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  transition: color 150ms ease;
+}
+
+.nf-hero__role-item:hover {
+  color: #38bdf8;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+
+.nf-hero__right-divider {
+  height: 1px;
+  width: 65px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Social Buttons */
+.nf-hero__socials {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nf-hero__social-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  border: none;
+  padding: 3px 0;
+  color: #cbd5e1;
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: color 140ms ease, transform 140ms ease;
+}
+
+.nf-hero__social-btn:hover {
+  color: #38bdf8;
+  transform: translateX(4px);
+}
+
+.nf-hero__social-icon {
+  flex-shrink: 0;
+  color: inherit;
+  transition: filter 140ms ease;
+}
+
+.nf-hero__social-btn:hover .nf-hero__social-icon {
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.9));
+}
+
+/* ── Responsive Behavior ───────────────────────────────────── */
+@media (max-width: 1040px) {
+  .nf-hero {
+    gap: 24px;
+  }
+  .nf-hero__right {
+    padding-left: 20px;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 860px) {
+  .nf-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .nf-hero__right {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 16px;
+    width: 100%;
+    max-width: none;
+  }
+
+  .nf-hero__socials {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+}

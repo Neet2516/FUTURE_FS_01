@@ -1,0 +1,204 @@
+/* ============================================================
+   Boot Sequence Styles — Cinematic Full-Screen Handwriting
+   Navneet Sinha in Proper Red (Non-Vibrant, Authentic)
+   ============================================================ */
+
+.boot-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #07070a;
+  color: #dc2626;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 450ms cubic-bezier(0.16, 1, 0.3, 1), transform 450ms ease;
+}
+
+.boot-container--fade {
+  opacity: 0;
+  transform: scale(1.02);
+  pointer-events: none;
+}
+
+/* Subtle CRT Scanlines */
+.boot-scanlines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.35) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+/* Deep Red Ambient Glow (Warm, Non-Vibrant) */
+.boot-red-ambient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(220, 38, 38, 0.11) 0%,
+    rgba(185, 28, 28, 0.04) 45%,
+    transparent 72%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Discreet Skip Button */
+.boot-skip-btn {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #71717a;
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 150ms ease;
+  backdrop-filter: blur(8px);
+}
+
+.boot-skip-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #d4d4d8;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.boot-skip-btn kbd {
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #a1a1aa;
+  font-size: 10px;
+}
+
+/* ── Full-Width Handwriting Stage ──────────────────────────── */
+.boot-handwriting-stage {
+  position: relative;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4vw;
+  box-sizing: border-box;
+}
+
+.boot-handwriting-svg {
+  width: 92vw;
+  max-width: 1380px;
+  height: auto;
+  overflow: visible;
+  display: block;
+}
+
+/* ── Animated Handwriting Text in Proper Deep Red ─────────── */
+.boot-handwriting-text {
+  font-family: var(--font-cursive, 'Caveat', 'Dancing Script', cursive);
+  font-size: 148px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  stroke: #dc2626;
+  stroke-width: 2.4px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: #dc2626;
+  fill-opacity: 0;
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+  filter: drop-shadow(0 2px 10px rgba(185, 28, 28, 0.4));
+
+  /* Full handwriting stroke-drawing + gradual fill */
+  animation:
+    handwritingStroke 1.75s cubic-bezier(0.45, 0, 0.2, 1) forwards,
+    handwritingFill 0.55s 1.25s ease-out forwards;
+}
+
+@keyframes handwritingStroke {
+  0% {
+    stroke-dashoffset: 1500;
+    opacity: 0.8;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes handwritingFill {
+  0% {
+    fill-opacity: 0;
+  }
+  100% {
+    fill-opacity: 1;
+  }
+}
+
+/* ── Flowing Underline Flourish ────────────────────────────── */
+.boot-flourish-path {
+  stroke: #dc2626;
+  stroke-dasharray: 950;
+  stroke-dashoffset: 950;
+  filter: drop-shadow(0 2px 6px rgba(185, 28, 28, 0.4));
+  animation: flourishDraw 0.75s 1.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes flourishDraw {
+  0% {
+    stroke-dashoffset: 950;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ── Reduced Motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .boot-handwriting-text {
+    stroke-dashoffset: 0 !important;
+    fill-opacity: 1 !important;
+    animation: none !important;
+  }
+
+  .boot-flourish-path {
+    stroke-dashoffset: 0 !important;
+    animation: none !important;
+  }
+}
+
+/* ── Responsive Mobile ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .boot-handwriting-svg {
+    width: 95vw;
+  }
+
+  .boot-handwriting-text {
+    font-size: 135px;
+    stroke-width: 2.8px;
+  }
+
+  .boot-skip-btn {
+    top: 16px;
+    right: 16px;
+    padding: 4px 10px;
+  }
+}

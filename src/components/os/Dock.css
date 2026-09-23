@@ -1,0 +1,236 @@
+/* ============================================================
+   Ubuntu Left Application Dock Styles
+   ============================================================ */
+
+.ubuntu-dock {
+  position: fixed;
+  left: 0;
+  top: 32px;
+  bottom: 0;
+  width: 58px;
+  background: rgba(12, 14, 20, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0 12px;
+  z-index: 990;
+  user-select: none;
+}
+
+/* Top Ubuntu Logo Button */
+.ubuntu-dock__logo-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  transition: transform 150ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ubuntu-dock__logo-btn:hover {
+  transform: scale(1.1);
+}
+
+.ubuntu-dock__circle-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dock Apps List */
+.ubuntu-dock__apps {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.ubuntu-dock__item-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.ubuntu-dock__item {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ubuntu-dock__item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.ubuntu-dock__item--active {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Running indicator dot on left */
+.ubuntu-dock__indicator {
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 16px;
+  background: #E95420;
+  border-radius: 0 3px 3px 0;
+  box-shadow: 0 0 6px rgba(233, 84, 32, 0.6);
+}
+
+/* Icons styling */
+.ubuntu-dock__icon {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ubuntu-dock__icon--term {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--green);
+  background: #181a1f;
+  padding: 4px 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+.ubuntu-dock__icon--browser {
+  font-size: 22px;
+}
+
+.ubuntu-dock__icon--music {
+  color: #1db954;
+}
+
+.ubuntu-dock__icon--vscode {
+  color: var(--cyan);
+  font-weight: 700;
+}
+
+/* Tooltips */
+.ubuntu-dock__tooltip {
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(20, 24, 34, 0.95);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 120ms ease, transform 120ms ease;
+  z-index: 10000;
+}
+
+.ubuntu-dock__item:hover .ubuntu-dock__tooltip,
+.ubuntu-dock__launcher-btn:hover .ubuntu-dock__tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(2px);
+}
+
+/* Bottom 9-dot launcher button */
+.ubuntu-dock__bottom {
+  margin-top: auto;
+  position: relative;
+}
+
+.ubuntu-dock__launcher-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 150ms ease;
+}
+
+.ubuntu-dock__launcher-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.08);
+}
+
+.ubuntu-dock__grid-icon {
+  display: grid;
+  grid-template-columns: repeat(3, 4px);
+  grid-gap: 3px;
+}
+
+.ubuntu-dock__grid-icon span {
+  width: 4px;
+  height: 4px;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0.85;
+}
+
+/* Mobile Dock adaptations */
+@media (max-width: 768px) {
+  .ubuntu-dock {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 52px;
+    flex-direction: row;
+    padding: 0 12px;
+    border-right: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    justify-content: space-around;
+  }
+  .ubuntu-dock__logo-btn,
+  .ubuntu-dock__tooltip {
+    display: none;
+  }
+  .ubuntu-dock__apps {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .ubuntu-dock__indicator {
+    left: 50%;
+    top: auto;
+    bottom: -4px;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 3px;
+    border-radius: 3px 3px 0 0;
+  }
+}

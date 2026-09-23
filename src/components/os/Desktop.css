@@ -1,0 +1,155 @@
+.os-desktop {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: -apple-system, BlinkMacSystemFont, 'Ubuntu', 'Segoe UI', Roboto, sans-serif;
+  user-select: none;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Vignette / atmospheric shadow */
+.os-desktop__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.45) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Workspace area beneath TopBar */
+.os-desktop__workspace {
+  position: relative;
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Center Desktop Branding */
+.os-desktop__branding {
+  position: absolute;
+  top: 14%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+  z-index: 3;
+  color: #fff;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  opacity: 0.95;
+  transition: opacity 0.3s ease;
+}
+
+.os-desktop__sub {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 2px;
+}
+
+.os-desktop__brand-title {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.os-desktop__brand-os {
+  color: #e95420;
+  background: linear-gradient(135deg, #ff7e47 0%, #e95420 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.os-desktop__pills {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.os-desktop__dot {
+  color: #e95420;
+  font-size: 8px;
+}
+
+.os-desktop__motto {
+  margin: 14px 0 0 0;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+}
+
+/* Free-canvas for draggable desktop icons */
+.os-desktop__icons-canvas {
+  position: absolute;
+  /* fill the whole workspace so icons can be dragged anywhere */
+  inset: 0;
+  pointer-events: none; /* let the canvas be transparent to clicks … */
+  z-index: 4;
+}
+
+/* … but individual icons receive events */
+.os-desktop__icons-canvas > .desktop-icon {
+  pointer-events: auto;
+}
+
+/* Windows Canvas Layer */
+.os-desktop__windows-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.os-desktop__windows-layer > * {
+  pointer-events: auto;
+}
+
+/* Mobile Responsive Adaptations */
+@media (max-width: 768px) {
+  .os-desktop__branding {
+    top: 10%;
+    transform: translateX(-50%) scale(0.85);
+  }
+
+  .os-desktop__brand-title {
+    font-size: 34px;
+  }
+
+  .os-desktop__icons-grid {
+    left: 12px;
+    top: 12px;
+    grid-template-columns: repeat(2, 68px);
+    grid-auto-rows: 80px;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .os-desktop__branding {
+    display: none; /* Hide center branding on very small screens to maximize space */
+  }
+
+  .os-desktop__icons-grid {
+    grid-template-columns: repeat(3, 68px);
+  }
+}

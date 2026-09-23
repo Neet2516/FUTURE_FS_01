@@ -1,0 +1,89 @@
+/* ============================================================
+   Desktop Icon Styles
+   ============================================================ */
+
+.desktop-icon {
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 4px;
+  border-radius: 8px;
+  user-select: none;
+  border: 1px solid transparent;
+  outline: none;
+  transition: background 120ms ease, border-color 120ms ease,
+              box-shadow 120ms ease;
+  /* absolute positioning handled inline */
+  z-index: 5;
+}
+
+/* Lift effect while dragging */
+.desktop-icon--dragging {
+  z-index: 9999 !important;
+  opacity: 0.85;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  transition: none; /* instant feedback while dragging */
+}
+
+.desktop-icon:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.desktop-icon--selected,
+.desktop-icon:focus-visible {
+  background: rgba(37, 99, 235, 0.35);
+  border-color: rgba(96, 165, 250, 0.6);
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+}
+
+/* Subtle scale-up on hover graphic */
+.desktop-icon__graphic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.45));
+  transition: transform 120ms ease;
+  pointer-events: none; /* let parent receive all mouse events */
+}
+
+.desktop-icon:not(.desktop-icon--dragging):hover .desktop-icon__graphic {
+  transform: translateY(-2px) scale(1.06);
+}
+
+/* Label */
+.desktop-icon__label {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.25;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 6px rgba(0, 0, 0, 0.75);
+  word-break: break-word;
+  max-width: 100%;
+  padding: 1px 4px;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.desktop-icon--selected .desktop-icon__label {
+  background: #2563EB;
+  text-shadow: none;
+}
+
+/* App glyph icon variant */
+.desktop-icon__app-glyph {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+}

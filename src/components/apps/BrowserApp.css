@@ -1,0 +1,969 @@
+/* ============================================================
+   Navneet Browser — Real Mini-Browser Styling
+   Terminal-inspired OS aesthetics, Chrome-style tab strip,
+   responsive layout, cyber cyan accents
+   ============================================================ */
+
+.browser-app {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: #11131a;
+  color: #e2e8f0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+}
+
+/* ── 1. Chrome-Style Tab Strip ───────────────────────────── */
+.browser-app__tab-strip {
+  height: 38px;
+  background: #0a0b10;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 10px;
+  gap: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.browser-app__tab-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.browser-app__tabs-list {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  flex: 1;
+  max-width: 100%;
+}
+
+.browser-tab {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  font-size: 12px;
+  color: #94a3b8;
+  max-width: 200px;
+  min-width: 110px;
+  cursor: pointer;
+  transition: all 120ms ease;
+  position: relative;
+}
+
+.browser-tab:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+}
+
+.browser-tab--active {
+  background: #181b26 !important;
+  color: #38bdf8 !important;
+  font-weight: 500;
+  border-color: rgba(56, 189, 248, 0.3) !important;
+  box-shadow: 0 -2px 10px rgba(0, 245, 255, 0.08);
+}
+
+.browser-tab--active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #00f5ff, #3b82f6);
+  border-radius: 8px 8px 0 0;
+}
+
+.browser-tab__icon {
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.browser-tab__title {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11.5px;
+}
+
+.browser-tab__close {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 2px;
+  font-size: 10px;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 120ms ease, color 120ms ease;
+  flex-shrink: 0;
+}
+
+.browser-tab__close:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+.browser-tab__add-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #94a3b8;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 300;
+  border-radius: 6px;
+  margin-bottom: 2px;
+  transition: all 120ms ease;
+  flex-shrink: 0;
+}
+
+.browser-tab__add-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ── 2. Navigation Toolbar ───────────────────────────────── */
+.browser-app__toolbar {
+  height: 44px;
+  background: #181b26;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  flex-shrink: 0;
+}
+
+.browser-app__nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.browser-nav-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #cbd5e1;
+  font-size: 16px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.browser-nav-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #38bdf8;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.browser-nav-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.browser-nav-btn--loading {
+  animation: browser-spin 1s linear infinite;
+  color: #38bdf8 !important;
+}
+
+@keyframes browser-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Address Bar Form */
+.browser-app__address-form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #0f1118;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 4px 12px;
+  transition: all 150ms ease;
+}
+
+.browser-app__address-form:focus-within {
+  border-color: #00f5ff;
+  box-shadow: 0 0 12px rgba(0, 245, 255, 0.2);
+}
+
+.browser-app__security-badge {
+  font-size: 12px;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+}
+
+.browser-app__address-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f1f5f9;
+  font-family: inherit;
+  font-size: 12.5px;
+  padding: 2px 0;
+  user-select: text;
+}
+
+.browser-app__address-input::placeholder {
+  color: #64748b;
+}
+
+.browser-app__clear-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 2px 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.browser-app__clear-btn:hover {
+  color: #f1f5f9;
+}
+
+.browser-app__go-btn {
+  background: linear-gradient(135deg, #00f5ff, #0284c7);
+  color: #050814;
+  border: none;
+  border-radius: 12px;
+  padding: 3px 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.browser-app__go-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 2px 8px rgba(0, 245, 255, 0.4);
+}
+
+.browser-app__toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.browser-tool-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 120ms ease;
+}
+
+.browser-tool-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.browser-app__user-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #00f5ff);
+  color: #050814;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* ── 3. Animated Loading Progress Bar ────────────────────── */
+.browser-app__progress-bar {
+  height: 2.5px;
+  background: transparent;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.browser-app__progress-bar--active {
+  background: rgba(0, 245, 255, 0.15);
+}
+
+.browser-app__progress-bar--active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, #00f5ff, #38bdf8, transparent);
+  animation: browser-progress-anim 1.2s infinite ease-in-out;
+}
+
+@keyframes browser-progress-anim {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+
+/* ── 4. Bookmarks Bar ────────────────────────────────────── */
+.browser-app__bookmarks-bar {
+  height: 32px;
+  background: #141722;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.browser-bookmarks-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.browser-bookmarks-scroll {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow-x: auto;
+  flex: 1;
+}
+
+.browser-bookmarks-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.browser-bookmark-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  color: #cbd5e1;
+  font-size: 11.5px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 120ms ease;
+}
+
+.browser-bookmark-chip:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #38bdf8;
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.browser-bookmark-chip__icon {
+  font-size: 12px;
+}
+
+/* ── 5. Main Canvas / Viewport ───────────────────────────── */
+.browser-app__viewport {
+  flex: 1;
+  overflow-y: auto;
+  position: relative;
+  background: #11131a;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Case A: Home View ───────────────────────────────────── */
+.browser-home {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.browser-home__branding {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.browser-home__globe-icon {
+  font-size: 44px;
+  margin-bottom: 8px;
+  display: inline-block;
+  filter: drop-shadow(0 0 16px rgba(0, 245, 255, 0.4));
+  animation: browser-pulse-glow 3s infinite alternate ease-in-out;
+}
+
+@keyframes browser-pulse-glow {
+  0% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(0, 245, 255, 0.3)); }
+  100% { transform: scale(1.05); filter: drop-shadow(0 0 22px rgba(0, 245, 255, 0.6)); }
+}
+
+.browser-home__title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  margin: 0 0 6px 0;
+  background: linear-gradient(135deg, #ffffff, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.browser-home__subtitle {
+  font-size: 13.5px;
+  color: #94a3b8;
+  max-width: 580px;
+  line-height: 1.5;
+  margin: 0 auto;
+}
+
+/* Omnibox / Google Search Box */
+.browser-home__search-box {
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #181b26;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  padding: 8px 14px 8px 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  margin-bottom: 20px;
+  transition: all 150ms ease;
+}
+
+.browser-home__search-box:focus-within {
+  border-color: #00f5ff;
+  box-shadow: 0 10px 36px rgba(0, 245, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.browser-home__search-prefix {
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.browser-home__search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 14.5px;
+  font-family: inherit;
+  user-select: text;
+}
+
+.browser-home__search-input::placeholder {
+  color: #64748b;
+}
+
+.browser-home__search-submit {
+  background: linear-gradient(135deg, #00f5ff, #2563eb);
+  color: #050814;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 120ms ease;
+  white-space: nowrap;
+}
+
+.browser-home__search-submit:hover:not(:disabled) {
+  transform: scale(1.03);
+  box-shadow: 0 4px 14px rgba(0, 245, 255, 0.4);
+}
+
+.browser-home__search-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* AI Question Sub-bar */
+.browser-home__ai-section {
+  width: 100%;
+  max-width: 620px;
+  margin-bottom: 32px;
+}
+
+.browser-home__ai-subform {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  background: rgba(0, 245, 255, 0.05);
+  border: 1px dashed rgba(0, 245, 255, 0.25);
+  border-radius: 12px;
+}
+
+.browser-home__ai-tag {
+  font-size: 12px;
+  font-weight: 600;
+  color: #38bdf8;
+}
+
+.browser-home__ai-btn {
+  background: rgba(0, 245, 255, 0.12);
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  color: #00f5ff;
+  border-radius: 8px;
+  padding: 4px 10px;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.browser-home__ai-btn:hover {
+  background: rgba(0, 245, 255, 0.22);
+}
+
+.browser-home__ai-loading {
+  font-size: 12px;
+  color: #38bdf8;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.browser-spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(56, 189, 248, 0.2);
+  border-top-color: #38bdf8;
+  border-radius: 50%;
+  animation: browser-spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+.browser-home__ai-card {
+  margin-top: 10px;
+  background: #181b26;
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  border-radius: 10px;
+  padding: 12px 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.browser-home__ai-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  color: #00f5ff;
+  margin-bottom: 6px;
+}
+
+.browser-home__ai-card-close {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.browser-home__ai-card-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #e2e8f0;
+  user-select: text;
+}
+
+/* Quick Access Cards Grid */
+.browser-home__cards-header {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
+}
+
+.browser-home__cards-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.browser-home__cards-sub {
+  font-size: 11.5px;
+  color: #64748b;
+}
+
+.browser-home__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+
+.browser-shortcut-card {
+  background: #181b26;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  transition: all 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.browser-shortcut-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--card-accent, #38bdf8);
+  opacity: 0.8;
+}
+
+.browser-shortcut-card:hover {
+  transform: translateY(-3px);
+  background: #202433;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+
+.browser-shortcut-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.browser-shortcut-card__icon {
+  font-size: 22px;
+}
+
+.browser-shortcut-card__badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.browser-shortcut-card__info {
+  flex: 1;
+}
+
+.browser-shortcut-card__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+}
+
+.browser-shortcut-card__desc {
+  font-size: 11.5px;
+  color: #94a3b8;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.browser-shortcut-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.browser-shortcut-card__action {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--card-accent, #38bdf8);
+  transition: transform 120ms ease;
+}
+
+.browser-shortcut-card:hover .browser-shortcut-card__action {
+  transform: translateX(3px);
+}
+
+/* ── Case B: External Fallback Card (Google, YouTube, etc.) ─ */
+.browser-external-fallback {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+}
+
+.browser-external-card {
+  max-width: 600px;
+  width: 100%;
+  background: #181b26;
+  border: 1px solid rgba(0, 245, 255, 0.25);
+  border-radius: 18px;
+  padding: 32px 28px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+
+.browser-external-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00f5ff, #3b82f6, #9333ea);
+}
+
+.browser-external-card__icon-wrap {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(0, 245, 255, 0.1);
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.browser-external-card__icon {
+  font-size: 26px;
+}
+
+.browser-external-card__badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #00f5ff;
+  background: rgba(0, 245, 255, 0.08);
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+
+.browser-external-card__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  line-height: 1.3;
+}
+
+.browser-external-card__desc {
+  font-size: 13px;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0 0 20px 0;
+}
+
+.browser-external-card__desc code {
+  background: rgba(0, 0, 0, 0.4);
+  color: #38bdf8;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.browser-external-card__url-box {
+  width: 100%;
+  background: #0f1118;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.browser-external-card__url-glyph {
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.browser-external-card__url-text {
+  flex: 1;
+  font-size: 12px;
+  color: #38bdf8;
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  user-select: text;
+}
+
+.browser-external-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.browser-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 120ms ease;
+  border: none;
+}
+
+.browser-btn--primary {
+  background: linear-gradient(135deg, #00f5ff, #0284c7);
+  color: #050814;
+}
+
+.browser-btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 245, 255, 0.4);
+}
+
+.browser-btn--secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.browser-btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.browser-btn--outline {
+  background: transparent;
+  color: #94a3b8;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.browser-btn--outline:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.browser-external-card__tips {
+  font-size: 11.5px;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.browser-external-card__tips code {
+  color: #38bdf8;
+}
+
+/* ── Case C: Embedded Iframe View (Wikipedia, docs, etc.) ── */
+.browser-embedded-container {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #ffffff;
+}
+
+.browser-app__iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* ── Responsiveness ───────────────────────────────────────── */
+@media (max-width: 680px) {
+  .browser-home__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .browser-app__toolbar {
+    padding: 0 8px;
+    gap: 6px;
+  }
+
+  .browser-app__nav-controls {
+    gap: 2px;
+  }
+
+  .browser-nav-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+
+  .browser-tab {
+    min-width: 80px;
+    padding: 0 8px;
+  }
+
+  .browser-external-card {
+    padding: 24px 16px;
+  }
+
+  .browser-external-card__actions {
+    flex-direction: column;
+  }
+
+  .browser-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
