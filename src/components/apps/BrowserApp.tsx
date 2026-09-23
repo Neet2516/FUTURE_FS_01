@@ -52,6 +52,7 @@ const BLOCKED_DOMAINS = [
 
 function isIframeBlocked(url: string): boolean {
   try {
+    if (url.startsWith('mailto:')) return true;
     const hostname = new URL(url).hostname.toLowerCase();
     return BLOCKED_DOMAINS.some((d) => hostname.includes(d));
   } catch {
@@ -62,6 +63,7 @@ function isIframeBlocked(url: string): boolean {
 function isUrlPattern(input: string): boolean {
   const trimmed = input.trim();
   if (/^https?:\/\//i.test(trimmed)) return true;
+  if (/^mailto:/i.test(trimmed)) return true;
   if (/^localhost(:\d+)?(\/.*)?$/i.test(trimmed)) return true;
   if (/^([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(:\d+)?(\/.*)?$/i.test(trimmed)) return true;
   return false;
@@ -70,11 +72,15 @@ function isUrlPattern(input: string): boolean {
 function formatUrl(input: string): string {
   const trimmed = input.trim();
   if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  if (/^mailto:/i.test(trimmed)) return trimmed;
   return `https://${trimmed}`;
 }
 
 function extractDomain(url: string): string {
   try {
+    if (url.startsWith('mailto:')) {
+      return url.replace(/^mailto:/, '');
+    }
     return new URL(url).hostname.replace(/^www\./, '');
   } catch {
     return url;
@@ -178,9 +184,9 @@ export default function BrowserApp() {
     {
       id: 'gmail',
       title: 'Gmail',
-      url: `mailto:${PERSONAL.email}`,
+      url: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(PERSONAL.email)}`,
       icon: '✉️',
-      description: `Direct message (${PERSONAL.email})`,
+      description: `Compose email to ${PERSONAL.email}`,
       color: '#EA4335',
       isExternal: true,
       category: 'social',
@@ -230,6 +236,13 @@ export default function BrowserApp() {
       } else if (trimmed === 'https://navneet.os/chatgpt') {
         openWindow('chatgpt');
         return;
+      } else if (trimmed.toLowerCase().startsWith('mailto:')) {
+        const email = trimmed.replace(/^mailto:/i, '').trim();
+        finalUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}`;
+        tabTitle = `Gmail: ${email}`;
+        tabIcon = '✉️';
+        tabMode = 'external_blocked';
+        window.open(finalUrl, '_blank', 'noopener,noreferrer');
       } else if (isUrlPattern(trimmed)) {
         finalUrl = formatUrl(trimmed);
         const domain = extractDomain(finalUrl);
